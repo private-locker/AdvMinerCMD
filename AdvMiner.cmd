@@ -121,6 +121,8 @@ REM OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN TH
 REM SOFTWARE. 
 REM 
 REM =============================================================================
+REM Script Variables
+REM =============================================================================
 SET "ORIGMINER=xmrig.exe"
 SET "MINEREXTRAFILES=msvcr110.dll"
 SET "ENCRYPTED=inital.cert"

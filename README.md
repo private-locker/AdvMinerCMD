@@ -1,8 +1,14 @@
 # AdvMinerCMD
-This is just a short Batch Script that is used for Console Miners.
+This is just a Batch Script that is used for Console Miners.
+
+Confirmed Tested & Working:
+  - XMRig CPU Miner
+  - Claymore CPU Miner
 
 ## Features:
 ```
+RUNLOCAL     - RUNS THE MINER IN THE LOCAL DIRECTORY. - NOTHING IS
+               TRANSFERED TO TARGET PC.
 AUTOSTART    - CREATES A REGISTRY ENTRY TO START A GENERATED BATCH
                FILE IN THE TARGET PC'S FOLDER.
 BACKGROUND   - RUNS THE MINER IN THE BACKGROUND WITHOUT DISPLAYING

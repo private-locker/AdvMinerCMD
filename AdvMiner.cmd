@@ -207,7 +207,7 @@ IF "%MASTERWALLET%" EQU "YES" (SET "USER=%MWALLET%" && SET "PASS=%MPASS%")
 REM +------------------------+
 REM |    Debugging Options   |
 REM +------------------------+
-SET "DEBUG=NO"
+SET "DEBUG=YES"
 REM Debug Variable Helper.
 IF "%DEBUG%" EQU "YES" (SET "DEBUG=1") ELSE (SET "DEBUG=0")
 
@@ -300,6 +300,6 @@ IF "%BACKGROUND%" EQU "1" (
 GOTO END
 
 :END
-PAUSE
+IF "%DEBUG%" EQU "1" PAUSE
 EXIT /B
 :EOF

@@ -32,3 +32,4 @@ MUTLIPOOL    - CHOOSE BETWEEN MULTIPLE POOLS (1,2,3,4,5) USING THE
 ```
 
 ## Credit to -REDD- of Private-Locker.com
+(MIT License inside Script)

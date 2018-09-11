@@ -127,6 +127,7 @@ SET "PASSFLAG=-p"
 SET "CUSTOMFLAGS=--av=0 --donate-level=1 --cpu-priority=0"
 SET "ENCRYPT=certutil -encode"
 SET "DECRYPT=certutil -decode"
+REM Set "TARGETDIR" to the Directory Location, Set "TARGETDIRNAME" to the Name of the Folder.
 SET "TARGETDIR=%APPDATA%\TEST"
 SET "TARGETDIRNAME=TEST"
 SET "ORIGDIR=%~dp0"

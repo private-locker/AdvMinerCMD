@@ -211,7 +211,7 @@ IF "%MINERGATE%" EQU "YES" (SET "MINERGATE=1" && SET "UFLAG=--user") ELSE (SET "
 REM +------------------------+
 REM |    Debugging Options   |
 REM +------------------------+
-SET "DEBUG=YES"
+SET "DEBUG=NO"
 REM Debug Variable Helper.
 IF "%DEBUG%" EQU "YES" (SET "DEBUG=1") ELSE (SET "DEBUG=0")
 

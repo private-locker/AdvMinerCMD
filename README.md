@@ -4,6 +4,7 @@ This is just a Batch Script that is used for Console Miners.
 Confirmed Tested & Working:
   - XMRig CPU Miner
   - Claymore CPU Miner
+  - MinerGate Console Cli
 
 ## Features:
 ```

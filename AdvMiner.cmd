@@ -1,4 +1,5 @@
 @echo off
+CD /d "%~dp0"
 REM ============================================================================
 REM Sorry I had a bad day... So I had to do something useful with my
 REM time. Figured I'd build something quick and release it.

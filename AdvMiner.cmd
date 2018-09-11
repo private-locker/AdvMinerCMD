@@ -1,17 +1,10 @@
 @echo off
 CD /d "%~dp0"
 REM ============================================================================
-REM Sorry I had a bad day... So I had to do something useful with my
-REM time. Figured I'd build something quick and release it.
-REM We have many more projects being worked on, and am loving the 
-REM support of the Community!
-REM
-REM This script is written to be flexible with MANY miners. If you
-REM have a config, please share with the community.
-REM 
-REM                               -REDD-
-REM                https://www.private-locker.com
-REM 
+REM                        Advanced Miner Command
+REM                                 -REDD-
+REM                    https://www.private-locker.com
+REM                        (See below for MIT Lic.)
 REM ============================================================================
 REM ---------------------------[ FEATURES/TOGGLES ]-----------------------------
 REM ============================================================================
